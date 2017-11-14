@@ -12,4 +12,16 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal 'Assigned 2 tests to 2 users', flash[:notice]
   end
+
+  test 'empty group assign testings' do
+    assert_difference('Testing.count', 0) do
+      post testing_assignment_path, params: {
+        user_ids: [],
+        group_ids: [groups(:biology).id],
+        test_ids: [tests(:digits).id, tests(:words).id]
+      }
+    end
+
+    assert_equal "Assigned 2 tests to 0 users", flash[:notice]
+  end
 end

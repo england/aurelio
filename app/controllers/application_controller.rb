@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
 
     users.each { |user| user.tests.push(*tests) }
 
-    flash[:notice] = "Assigned #{tests.count} tests to #{users.count} users"
+    flash[:notice] = "Assigned #{tests.count} tests to #{users.count} users" # FIXME: validate users & tests
   end
 end
