@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
     tests = Test.where(id: params[:test_ids])
 
-    users.each { |user| user.tests.push(*tests) }
+    users.each { |user| user.tests.push(*tests) } # TODO: bulk insert
 
     flash[:notice] = "Assigned #{tests.count} tests to #{users.count} users" # FIXME: validate users & tests
   end
